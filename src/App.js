@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
+import { Widget } from 'react-chat-widget';
 
-// Render each post
-
-// Filter, since reddit always returns stickied posts up top
+import 'react-chat-widget/lib/styles.css';
 
 function App() {
-  return <div className="">hi</div>;
+  const handleNewUserMessage = (newMessage) => {
+    console.log(`New message incoming! ${newMessage}`);
+    // Now send the message throught the backend API
+  };
+  return (
+    <div className="App">
+      <Widget handleNewUserMessage={handleNewUserMessage} />
+    </div>
+  );
 }
 
 export default App;
