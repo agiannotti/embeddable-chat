@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { Widget, addResponseMessage } from 'react-chat-widget';
-
+import React from 'react';
+import { addResponseMessage, Widget } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-import { getBot } from './http/getBot';
 import { v4 as uuidv4 } from 'uuid';
+import { getBot } from './http/getBot';
+
 
 function App() {
   const uuid = uuidv4();
@@ -19,8 +19,10 @@ function App() {
     console.log(`New message incoming! ${newMessage}`);
     getBot(newMessage, uuid).then((res) => {
       addResponseMessage(res.data.directives[0].payload.text);
+    }).catch((err) => {
+      console.error("Error", err);
     });
-    // Now send the message throught the backend API
+
   };
   return (
     <div className="App">
